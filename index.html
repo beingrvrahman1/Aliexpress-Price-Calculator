@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AliExpress Calculator</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f7f7f7;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    
+    .calculator-box {
+      background-color: #ffffff;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      animation: fade-in 0.6s ease-out;
+    }
+    
+    .calculator-header {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333333;
+      margin-bottom: 20px;
+    }
+    
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .input-group label {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    
+    input[type="number"] {
+      width: 200px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #dddddd;
+    }
+    
+    button {
+      width: 150px;
+      padding: 10px;
+      background-color: #4caf50;
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    button:hover {
+      background-color: #45a049;
+    }
+    
+    #result {
+      margin-top: 30px;
+      font-weight: bold;
+      font-size: 20px;
+      color: #333333;
+      animation: fade-in 0.6s ease-out;
+    }
+    
+    .answer-summary {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #666666;
+      animation: slide-up 0.6s ease-out;
+    }
+    
+    .answer-unit {
+      font-weight: bold;
+      color: #ff5722;
+      animation: color-change 0.8s infinite alternate;
+    }
+    
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes slide-up {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes color-change {
+      from {
+        color: #ff5722;
+      }
+      to {
+        color: #1976d2;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="calculator-box">
+      <h2 class="calculator-header">AliExpress Calculator</h2>
+      
+      <div class="input-group">
+        <label for="price">Product Price (BDT)</label>
+        <input type="number" id="price" placeholder="Enter the product price">
+      </div>
+      
+      <div class="input-group">
+        <label for="shipping">Shipping Cost (BDT)</label>
+        <input type="number" id="shipping" placeholder="Enter the shipping cost">
+      </div>
+      
+      <button onclick="calculate()">Calculate</button>
+      
+      <p id="result"></p>
+      <p class="answer-summary">Price in BDT = <span class="answer-unit"></span> Taka</p>
+    </div>
+  </div>
+
+  <script>
+    function calculate() {
+      var price = parseFloat(document.getElementById('price').value);
+      var shipping = parseFloat(document.getElementById('shipping').value);
+      var total = price + shipping;
+      var multipliedTotal = total * 112;
+      var roundedTotal = multipliedTotal.toFixed(2);
+      var resultElement = document.getElementById('result');
+      var answerUnitElement = document.querySelector('.answer-unit');
+
+      answerUnitElement.innerHTML = roundedTotal;
+      
+      resultElement.style.animation = "fade-in 0.6s ease-out";
+      answerUnitElement.style.animation = "color-change 0.8s infinite alternate";
+    }
+  </script>
+</body>
+</html>
